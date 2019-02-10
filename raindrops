@@ -1,0 +1,27 @@
+
+int rainPin = A0; // ο αισθητήρας συνδέεται στον αναλογικό ακροδέκτη Α0
+int blueLED = 8;
+
+int thresholdrValue = 600;
+
+void setup(){
+  pinMode(rainPin, INPUT);
+  pinMode(blueLED, OUTPUT);
+  digitalWrite(blueLED, LOW);
+  Serial.begin(9600);
+}
+
+void loop() {
+   int sensorrValue = analogRead(rainPin);
+  Serial.print(sensorrValue);
+  if(sensorrValue < thresholdrValue){
+    Serial.println(" - Wet");
+    digitalWrite(blueLED, HIGH);
+  }
+  else {
+    Serial.println(" - Dry");
+    digitalWrite(blueLED, LOW);
+  }
+    delay(2000);
+    
+}
