@@ -1,0 +1,24 @@
+/*
+ η συχνότητα του τόνου εξαρτάται από την ποσότητα φωτός 
+ κύκλωμα:
+  * ηχείο 8Ω στον ακροδέκτη D9
+  * φωτοαντίσταση στον ακροδέκτη Α0 ως διαιρέτης τάσης με σταθερή 4.7KΩ
+  
+*/
+
+int sensorReading = 0;
+
+void setup()
+{
+  pinMode(A0, INPUT);
+  pinMode(9, OUTPUT);
+}
+
+void loop()
+{
+  sensorReading = analogRead(A0); //διαβάζει τον αισθητήρα
+  // με την map αντιστοιχίζεται η τιμή από τον αισθητήρα στο ηχείο
+  int frequency = map(sensorReading, 0, 100, 1023, 5000);
+  tone(9,frequency );
+  delay(100); // Delay a little bit to improve simulation performance
+}
